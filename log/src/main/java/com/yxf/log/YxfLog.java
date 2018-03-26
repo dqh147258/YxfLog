@@ -242,15 +242,15 @@ public class YxfLog {
 
     //---------------------- sub log builder ----------------
 
-    public static Builder Builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder Builder(String TAG) {
+    public static Builder builder(String TAG) {
         return new Builder(TAG);
     }
 
-    public static Builder Builder(Object o) {
+    public static Builder builder(Object o) {
         return new Builder(o);
     }
 

@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         YxfLog.d("interesting");
         YxfLog.sw("it is a simple warming");
-        YxfLog.SubLog log = YxfLog.Builder(this).create();
+        YxfLog.SubLog log = YxfLog.builder(this).create();
         log.d("it does not interesting");
         log.se("it is a simple error message of sub log");
     }
