@@ -280,6 +280,7 @@ public class YxfLog {
                     TAG = MAIN_TAG + "." + builder.SUB_TAG.substring(builder.TAGLength);
                 }
             }
+            realTAG = TAG;
             PrettyFormatStrategy strategy = PrettyFormatStrategy.newBuilder()
                     .methodOffset(builder.methodOffset + 1)
                     .showThreadInfo(builder.isShowThreadInfo)
