@@ -743,6 +743,8 @@ public class YxfLog {
 
         static final String DEFAULT_TAG = "NO_TAG";
 
+        private int logPreType = 0;
+
         @Override
         public void log(int priority, @Nullable String tag, @NonNull String message) {
             Utils.checkNotNull(message);
@@ -751,6 +753,12 @@ public class YxfLog {
                 tag = DEFAULT_TAG;
             }
 
+            if (logPreType++ < 1) {
+                tag = ">" + tag;
+            } else {
+                tag = "<" + tag;
+                logPreType = 0;
+            }
             Log.println(priority, tag, message);
         }
     }
@@ -1052,7 +1060,6 @@ public class YxfLog {
                 return;
             }
             Utils.checkNotNull(msg);
-
             String tag = getTag();
             String message = createMessage(msg, args);
             log(priority, tag, message, throwable);
