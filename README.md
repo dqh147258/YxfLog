@@ -1,38 +1,14 @@
-# 自定义一个自己的Log(原谅我懒直接把博客拉过来当说明)
-## 目录
-[TOC]
-## Android Log简介
-Android 中`android.util`包下有个`Log`类,支持Verbose,Debug,Info,Warn,Error 5个等级的Log打印,然而这个类功能略简陋,只支持简单的信息输出,而且每次必须带一个TAG参数,发布的时候要关闭调试信息也不方便.其实最关键的是这个Log不够酷_(:з」∠)_
+# YxfLog
 
-## 来看看github中有哪些酷酷的Log开源库
-### [XLog](https://github.com/elvishew/xLog)
-这是国内一个开发者开发的一个功能非常完善的一个Log库,可以说是很酷了.
-### [LogUtils](https://github.com/pengwei1024/LogUtils)
-这个和上面的差不多,也是国内一个开发者写的.
-### [logger](https://github.com/orhanobut/logger)
-这个是国外大神写的,以上两个Log应该也借鉴了这个开源库,可以说是鼻祖级别了.在此前大半年的开发中我都是使用的这个开源库来打Log.
+[ ![Download](https://api.bintray.com/packages/dqh147258/android/YxfLog/images/download.svg?version=1.0.0) ](https://bintray.com/dqh147258/android/YxfLog/1.0.0/link)
 
-源代码设计模式用的不错
-## 这些炫酷的Log的原理解析
-这些Log可以打印代码所在行数,栈信息,线程信息等.那他们使用了什么方法呢?
-
-其实很简单
-
-只用了两个方法而已
-
-```
-StackTraceElement[] elements = Thread.currentThread().getStackTrace();//获得执行栈信息,比如类,行数,方法名等
-```
-
-和
-
-```
-Thread.currentThread().getId();//获得线程Id
-```
-以一定格式打印,Android Studio会解析栈的打印信息,然后我们点击就可以准确定位到行数了.
+一个支持多TAG的由logger扩展出来的log框架
 
 
 ## logger的缺点
+[logger](https://github.com/orhanobut/logger)是一个很优秀Android log框架,
+但是也有让人非常不爽的缺点,比如
+
 - 无法定义多个TAG,一个程序只能有一个TAG,有时候看Log区分度低不好看.
 - 貌似不支持打印等级控制
 
@@ -47,7 +23,12 @@ Thread.currentThread().getId();//获得线程Id
 - YxfLog只有一个文件,所以非常方便的可以移植到另一个项目,gradle依赖确实爽,然而对于我这个从事系统源码编译的,想用gradle编译?呵呵,还是乖乖写Android.mk吧,所以感觉直接将一个文件复制过去还是非常爽的( • ̀ω•́ )✧
 
 ### 使用
-1. 将YxfLog文件复制到自己项目中
+1. 添加jcenter依赖
+
+```
+compile 'com.yxf:log:1.0.0'
+```
+
 2. 设置可选初始化设置
 ```
 //在最先初始化的类中加入如下代码,以下参数皆为可选参数
@@ -90,48 +71,8 @@ Thread.currentThread().getId();//获得线程Id
     
 ![打印效果](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_SubLog_i_se.png)
 
-## YxfLog源码及测试例子地址
-[https://github.com/dqh147258/YxfLog](https://github.com/dqh147258/YxfLog)
+## 致谢
+[logger](https://github.com/orhanobut/logger)
 
-
-
-## Android Studio Logcat的颜色设置
-我的Logcat也是很炫的有没有ヽ(°▽、°)ﾉ
-
-你们的Logcat是不是还是这样的呢
-
-![image](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_default_logcat.png)
-
-我们再来干一件酷酷的事情吧,把Logcat颜色改成酷酷的( • ̀ω•́ )✧
-
-左上角,点击File-->Settings
-
-然后在左上角的搜索框中输入Logcat
-
-![image](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_Settings_search_Logcat.png)
-
-取消Use inherited attributes
-
-![image](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_Settings_Logcat_unchecked.png)
-
-选择颜色
-
-![image](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_Settings_Logcat_set_color.png)
-
-放出楼主的颜色设置
-
-Debug   -- 2695c6
-Error   -- ff231c
-Info    -- abff72
-Verbose -- ffffff
-Warning -- ff28fc
-
-应用
-
-![image](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_Settings_Logcat_apply.png)
-
-再放一次最终效果图
-![image](http://resource-1255703580.cossh.myqcloud.com/YxfLog/YxfLog_SubLog_i_se.png)
-
-
-
+## 关联文章
+[自定义一个自己的Log](https://blog.csdn.net/dqh147258/article/details/79774898)
